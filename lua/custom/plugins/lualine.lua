@@ -9,20 +9,33 @@ return {
       -- configure lualine with modified theme
       lualine.setup {
         options = {
-          theme = 'material-nvim', -- the default style
-          section_separators = { left = '', right = '' },
-          component_separators = { left = '>', right = '<', color = { gui = 'bold' } },
+          theme = 'sonokai', -- the default style
+          section_separators = { left = '', right = '' },
+          component_separators = { left = '', right = '' },
+          always_divide_middle = true,
+        },
+        extensions = {
+          'lazy',
+          'mason',
+          'neo-tree',
+          'toggleterm',
         },
         sections = {
+          lualine_a = {
+            {
+              'mode',
+              icons_enabled = true,
+            },
+          },
           lualine_b = {
             { 'branch', icon = '' },
             {
               'diff',
               colored = true,
               diff_color = {
-                added = { fg = '#04c904' },
-                modified = { fg = '#f5bf0a' },
-                removed = { fg = '#f51127' },
+                added = { fg = '#A9DC76' },
+                modified = { fg = '#EDC763' },
+                removed = { fg = '#FF6188' },
               },
               symbols = {
                 added = ' ',
@@ -34,31 +47,29 @@ return {
           lualine_c = {
             {
               'datetime',
-              style = '%d-%b %H:%M:%S',
-              color = { fg = 'ffffff', gui = 'bold' },
+              style = '%H:%M',
+              color = { fg = 'ffffff' },
             },
           },
           lualine_x = {
             {
               lazy_status.updates,
               cond = lazy_status.has_updates,
-              color = { fg = '#f77f36' },
+              color = { fg = '#f58947' },
             },
-            { 'encoding', fmt = string.upper, color = { fg = '#fadf46', gui = 'bold' } },
-            { 'fileformat', fmt = string.upper, icons_enabled = true, color = { fg = '#ffffff', gui = 'bold' } },
-            {
-              'filename',
-              color = { fg = 'ffffff', gui = 'bold' },
-            },
+            { 'encoding', fmt = string.upper, color = { fg = '#EDC763', gui = 'bold' } },
+            -- { 'fileformat', fmt = string.upper, icons_enabled = true, color = { fg = '#ffffff', gui = 'bold' } },
+            -- { 'filename', color = { fg = 'ffffff', gui = 'bold' } },
+            { 'filetype', icon_only = true, color = { fg = '#ffffff', gui = 'bold' } },
             {
               'diagnostics',
               sources = { 'nvim_lsp' },
               sections = { 'error', 'warn', 'info', 'hint' },
               diagnostics_color = {
-                error = { fg = '#e60259' },
-                warn = { fg = '#e67922' },
-                info = { fg = '#eeff00' },
-                hint = { fg = '#037bfc' },
+                error = { fg = '#ff386a' },
+                warn = { fg = '#f0be3c' },
+                info = { fg = '#a9dc25' },
+                hint = { fg = '#318fe0' },
               },
               symbols = {
                 error = ' ',
